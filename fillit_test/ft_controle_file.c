@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:51:42 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 18:40:14 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:36:13 by qdurot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_controle_file(int fd, t_tetri **list)
 	*list = NULL;
 	while (read(fd, buffer, BUFF_SIZE))
 	{
-		++ntetri;;
+		++ntetri;
 		if (buffer[0] == '\n')
 		{
 			ft_strdel(&buffer);

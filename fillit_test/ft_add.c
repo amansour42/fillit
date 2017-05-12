@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 09:00:21 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 15:15:26 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:30:49 by qdurot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void		ft_add(t_tetri **ap, t_tetri *tetri)
 {
 	t_tetri *maillon;
-	
+
 	if (!tetri)
 	{
 		if (*ap)

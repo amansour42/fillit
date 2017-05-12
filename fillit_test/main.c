@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:54:09 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 18:48:28 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:35:12 by qdurot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_tetri	*lst;
-	
+
 	lst = NULL;
 	if (argc != 2)
 		ft_usage();
