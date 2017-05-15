@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 19:08:16 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 14:47:00 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:32:23 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@
 # include "../libft_test/libft.h"
 # define BUFF_SIZE 21
 
+typedef struct		s_point
+{
+	int				b;
+	int				y;
+}					t_point;
+
 typedef struct		s_tetri
 {
 	char			c;
-	int				tab[4];
+	t_point			tab[4];
 	struct s_tetri	*next;
 }					t_tetri;
 
@@ -34,4 +40,5 @@ t_tetri				*ft_create_tetri(char *buffer, char a);
 void				ft_add(t_tetri **ap, t_tetri *tetri);
 void				ft_print(t_tetri *tetri);
 void				ft_free(t_tetri **ap);
+void				arrange(t_tetri **tetri);
 #endif

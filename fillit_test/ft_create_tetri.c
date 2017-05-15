@@ -6,49 +6,51 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 20:43:18 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 18:44:08 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:22:31 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 /*
- * verification du buffer :
- * 1- 4 lignes et chaque ligne contient soit des # ou des .
- * 2- verification du contact vertical des dieses ainsi que leur nombre 4
- */
-static void				ft_ndiese(char **l)
+**	verification du buffer :
+**	1- 4 lignes et chaque ligne contient soit des # ou des .
+**	2- verification du contact vertical des dieses ainsi que leur nombre 4
+*/
+
+static void			ft_ndiese(char **l)
 {
-	int ndiese;
+	int nd;
 	int i;
 	int j;
-	int pos;
+	int p;
 
-	ndiese = 0;
+	nd = 0;
 	i = 0;
 	while (l[i] && i < 4)
 	{
 		j = -1;
-		pos = -1;
-		while(l[i][++j] && (l[i][j] == '#' || l[i][j] == '.'))
+		p = -1;
+		while (l[i][++j] && (l[i][j] == '#' || l[i][j] == '.'))
 		{
 			if (l[i][j] == '#')
 			{
-				(pos != -1 && (j - pos != 1)) ? ft_error() : ++ndiese;
-				pos = j;
+				(p != -1 && (j - p) != 1) ? ft_error(2) : ++nd;
+				p = j;
 			}
 		}
-		(j != 4 || ndiese > 4) ? ft_error() : ++i;
+		(j != 4) ? ft_error(3) : ++i;
 	}
-	if (i < 4 || l[i] || ndiese < 4)
-		ft_error();
+	if (nd > 4)
+		ft_error(4);
 }
+
 /*
- * Remplissage du tab du tetri avec verification du contact
- * vertical des dieses
- */
-static void					ft_fill(int **tab, char **l)
+**	Remplissage du tab du tetri avec verification du contact
+**	vertical des dieses
+*/
+
+static void			ft_fill(t_point **tab, char **l)
 {
 	int		i;
 	int		j;
@@ -58,43 +60,42 @@ static void					ft_fill(int **tab, char **l)
 	i = -1;
 	bits = 0;
 	nb = 0;
-	while (++i < 4 && bits < 4) 
+	while (++i < 4)
 	{
+		(*tab)[i].y = i;
 		j = -1;
 		while (++j < 4)
 		{
-			tab[0][i] *= 2;
+			(*tab)[i].b <<= 1;
 			if (l[i][j] == '#')
-			{
-				++bits;
-				tab[0][i] += 1;
-			}
-		}	
-		if (nb && !(nb & tab[0][i]))
-			ft_error();
-		nb = tab[0][i];
+				(*tab)[i].b += 1;
+		}
+		if (nb && (*tab)[i].b && !((*tab)[i].b & nb))
+			ft_error(5);
+		nb = (*tab)[i].b;
 	}
 }
-/*
- * creation d'un tetri
- */
 
-t_tetri							*ft_create_tetri(char *buffer, char a)
+/*
+**	creation d'un tetri
+*/
+
+t_tetri				*ft_create_tetri(char *buffer, char a)
 {
-	int		*tmp;
+	t_point	*tmp;
 	t_tetri *maillon;
 	char	**lines;
 	int		i;
 
-	i = -1;
 	if (!(lines = ft_strsplit(buffer, '\n')))
-			return (NULL);
+		return (NULL);
 	ft_ndiese(lines);
-	if ((maillon = (t_tetri*)malloc(sizeof(t_tetri))) &&
-			(tmp = (int*)malloc(sizeof(int) * 4))) 
+	if ((maillon = (t_tetri*)malloc(sizeof(t_tetri)))
+			&& (tmp = (t_point*)malloc(sizeof(t_point) * 4)))
 	{
+		i = -1;
 		while (++i < 4)
-			tmp[i] = 0;
+			tmp[i].b = 0;
 		ft_fill(&tmp, lines);
 		maillon->next = NULL;
 		maillon->c = a;

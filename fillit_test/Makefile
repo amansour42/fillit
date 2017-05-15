@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 18:46:13 by amansour          #+#    #+#              #
-#    Updated: 2017/05/10 14:17:13 by amansour         ###   ########.fr        #
+#    Updated: 2017/05/15 14:28:40 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFLAGS = -L ../libft_test -lft
 FLAGS = -Wall -Wextra -Werror
 
 SRC = main.c ft_controle_file.c ft_create_tetri.c ft_add.c ft_print.c\
-	  ft_free.c ft_error.c
+	  ft_free.c ft_error.c arrange.c
 
 OBJ = $(SRC:.c=.o)
 

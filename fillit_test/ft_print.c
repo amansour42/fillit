@@ -6,12 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:54:15 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 18:53:04 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:34:27 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 static void	ft_print_tetri(t_tetri *tetri)
 {
@@ -29,7 +28,7 @@ static void	ft_print_tetri(t_tetri *tetri)
 			var = 8;
 			while (++i < (4 * (j + 1) + j))
 			{
-			app[i] = (tetri->tab[j] & var) ? tetri->c : '.';
+				app[i] = (tetri->tab[j].b & var) ? tetri->c : '.';
 				var = var >> 1;
 			}
 		}

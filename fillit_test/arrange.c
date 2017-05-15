@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add.c                                           :+:      :+:    :+:   */
+/*   arrange.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/04 09:00:21 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/15 16:57:05 by amansour         ###   ########.fr       */
+/*   Created: 2017/05/10 19:07:28 by amansour          #+#    #+#             */
+/*   Updated: 2017/05/15 15:57:13 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		ft_add(t_tetri **ap, t_tetri *tetri)
+static int	cote (t_tetri *tetri)
 {
-	t_tetri *maillon;
+	int	i;
+	int y;
+	int min;
+	int pos;
 
-	if (!tetri)
+	i = -1;
+	while (++i < 4 && tetri->tab[i].b);
+	y = i;
+	i = -1;
+	min = 3;
+	while (min && ++i < y)
 	{
-		if (*ap)
-			ft_free(ap);
-		ft_error(6);
+		pos = 0;
+		while (!(tetri->tab[i].b & (1 << pos)))
+			++pos;
+		if (min > pos)
+			min = pos;
 	}
-	if (*ap)
-	{
-		maillon = *ap;
-		while ((*ap)->next)
-			*ap = (*ap)->next;
-		(*ap)->next = tetri;
-		*ap = maillon;
-	}
-	else
-		*ap = tetri;
+	return ((y > (4 - min)) ? y : 4 - min);
+}
+
+void	ft_arrange(t_tetri **list)
+{
+	int		c;
+	//t_tetri	*maillon;
+
+	c = cote(*list);
 }

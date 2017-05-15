@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 13:29:16 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/10 15:07:45 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:57:42 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	ft_free(t_tetri **ap)
 {
 	t_tetri *maillon;
-	
-	if (ap)	
+
+	if (ap)
 	{
 		while (*ap)
 		{
