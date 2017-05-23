@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 18:46:13 by amansour          #+#    #+#              #
-#    Updated: 2017/05/23 20:27:07 by amansour         ###   ########.fr        #
+#    Updated: 2017/05/23 20:57:57 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC = arrange.c dimension.c fit_together.c\
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
-all: extra $(NAME)
+all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ)
 	gcc $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
@@ -36,16 +36,17 @@ $(NAME): $(LIB) $(OBJ)
 $(LIB):
 	@make -C libft
 
-extra:
-	mkdir -p $(OBJ_PATH)
+#extra:
+#	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p $(OBJ_PATH)
 	gcc $(FLAGS) -I $(INCLUD) -o $@ -c $<
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_PATH)
-	@echo "Cleaning" [ $(NAME) ] "..." $(OK)
+	@make -C libft clean
 
 fclean: clean
 	@rm -f $(NAME)
