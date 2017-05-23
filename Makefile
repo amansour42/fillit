@@ -6,45 +6,45 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 18:46:13 by amansour          #+#    #+#              #
-#    Updated: 2017/05/23 14:45:18 by amansour         ###   ########.fr        #
+#    Updated: 2017/05/23 20:08:22 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-LIBFLAGS = -L ../libft_test -lft
+LDFLAGS = -L libft
+LDLIBS = -lft
+FLAGS = -Werror -Wall -Wextra
 
-FLAGS = -Wall -Wextra -Werror
+SRC_PATH = ./source
+OBJ_PATH = ./obj
+INCLUD  = ./includes
 
-SRC = main.c arrange.c bit_cmp.c ft_controle_file.c ft_create_tetri.c\
-	ft_add.c ft_print.c fit_together.c dimension.c ft_free.c ft_error.c\
-	tetri_manip1.c tetri_manip2.c
+SRC = arrange.c dimension.c fit_together.c\
+	  ft_controle_file.c ft_error.c ft_print.c\
+	  tetri_manip1.c bit_cmp.c ft_add.c ft_create_tetri.c\
+	  ft_free.c main.c tetri_manip2.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
-LIB = libft.a
+all:
 
-INCLUDS = ../libft_test/libft.h
+	mkdir -p $(OBJ_PATH)
+	@$(MAKE) -C libft  --no-print-directory
+	@$(MAKE) $(NAME) --no-print-directory
 
-INCLUD = fillit.h
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+		gcc $(FLAGS) -I $(INCLUD) -o $@ -c $<
 
-all: $(NAME)
-
-$(LIB):
-	make -C ../libft_test
-
-$(NAME): $(OBJ) $(LIB)
-	gcc $(FLAGS) $(OBJ) $(LIBFLAGS) -o $(NAME)
-
-$(OBJ):
-	gcc $(FLAGS) -c $(SRC) -I $(INCLUDS) -I $(INCLUD)
+$(NAME): $(OBJ)
+		gcc $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ)
-	make -C ../libft_test clean
+		rm -rf $(OBJ_PATH)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C ../libft_test fclean
+		rm -rf $(NAME)
 
-re: fclean all
+re:
+		@$(MAKE) fclean --no-print-directory
+		@$(MAKE) all --no-print-directory

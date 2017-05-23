@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:54:15 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 13:48:19 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 20:06:26 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 static void	initialisation(char **str, int size)
 {

@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 20:43:18 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:26:23 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:07:29 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 /*
 **	verification du buffer :

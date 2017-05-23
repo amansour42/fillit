@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:09:28 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 14:10:07 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:06:07 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 int			cote_element(t_tetri *tetri)
 {

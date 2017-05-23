@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:12:36 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:27:28 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:09:14 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 int			cmp_t(t_tetri *list, t_tetri *tetri)
 {

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bit_cmp.c                                          :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/23 13:52:48 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 13:53:13 by amansour         ###   ########.fr       */
+/*   Created: 2017/05/10 13:29:16 by amansour          #+#    #+#             */
+/*   Updated: 2017/05/23 19:08:15 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
-int	bit_cmp(int a, int b, int size)
+void	free_list(t_tetri **ap)
 {
-	int i;
-	int result;
+	t_tetri *maillon;
 
-	i = 1 << size;
-	result = 1;
-	while (!(b & i))
-		i >>= 1;
-	while (result && i && (b & i))
+	if (ap)
 	{
-		result = (!(a & i)) ? 1 : 0;
-		i >>= 1;
+		while (*ap)
+		{
+			maillon = (*ap)->next;
+			(*ap)->next = NULL;
+			ft_memdel((void**)ap);
+			ap = &maillon;
+		}
 	}
-	return (result);
 }

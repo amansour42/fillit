@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:56:24 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:27:59 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:09:29 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 t_tetri		*copy_t(t_tetri *maillon)
 {

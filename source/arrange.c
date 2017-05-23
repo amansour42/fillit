@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 19:07:28 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 14:20:57 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:05:25 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 static int			sum(t_tetri *list, int ligne)
 {

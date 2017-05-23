@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/04 09:00:21 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:24:29 by amansour         ###   ########.fr       */
+/*   Created: 2017/05/03 18:54:09 by amansour          #+#    #+#             */
+/*   Updated: 2017/05/23 19:04:56 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
-void	add(t_tetri **ap, t_tetri *tetri)
+int	main(int argc, char **argv)
 {
-	t_tetri *maillon;
+	int		fd;
+	t_tetri	*lst;
+	t_tetri	*result;
 
-	if (!tetri)
+	lst = NULL;
+	if (argc != 2)
+		usage();
+	if ((fd = open(argv[1], O_RDONLY)) != -1 &&
+			(lst = (t_tetri*)malloc(sizeof(*lst))))
+		controle_file(fd, &lst);
+	if (lst)
 	{
-		if (*ap)
-			free(ap);
-		*ap = NULL;
-		ft_error();
+		result = fit_together(lst);
+		print(result, cote_list(result));
+		free((void*)lst);
 	}
-	if (*ap)
-	{
-		maillon = *ap;
-		while ((*ap)->next)
-			*ap = (*ap)->next;
-		(*ap)->next = tetri;
-		*ap = maillon;
-	}
-	else
-		*ap = tetri;
+	return (0);
 }

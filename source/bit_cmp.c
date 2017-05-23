@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   bit_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 18:46:52 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:25:48 by amansour         ###   ########.fr       */
+/*   Created: 2017/05/23 13:52:48 by amansour          #+#    #+#             */
+/*   Updated: 2017/05/23 19:05:43 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
-void	ft_error(void)
+int	bit_cmp(int a, int b, int size)
 {
-	exit(0);
-}
+	int i;
+	int result;
 
-int		usage(void)
-{
-	ft_putendl("usage: ./fillit source_file");
-	exit(0);
-	return (0);
+	i = 1 << size;
+	result = 1;
+	while (!(b & i))
+		i >>= 1;
+	while (result && i && (b & i))
+	{
+		result = (!(a & i)) ? 1 : 0;
+		i >>= 1;
+	}
+	return (result);
 }

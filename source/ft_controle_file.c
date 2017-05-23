@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:51:42 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:25:35 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:07:14 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 /*
 **	lecture du fichier et creation de list de tetri au meme tmps

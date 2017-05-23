@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/03 18:54:09 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 13:52:07 by amansour         ###   ########.fr       */
+/*   Created: 2017/05/03 18:46:52 by amansour          #+#    #+#             */
+/*   Updated: 2017/05/23 19:07:54 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
-int	main(int argc, char **argv)
+void	ft_error(void)
 {
-	int		fd;
-	t_tetri	*lst;
-	t_tetri	*result;
+	exit(0);
+}
 
-	lst = NULL;
-	if (argc != 2)
-		usage();
-	if ((fd = open(argv[1], O_RDONLY)) != -1 &&
-			(lst = (t_tetri*)malloc(sizeof(*lst))))
-		controle_file(fd, &lst);
-	if (lst)
-	{
-		result = fit_together(lst);
-		print(result, cote_list(result));
-		free((void*)lst);
-	}
+int		usage(void)
+{
+	ft_putendl("usage: ./fillit source_file");
+	exit(0);
 	return (0);
 }

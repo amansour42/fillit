@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 19:08:16 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 15:32:37 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:35:39 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
-# include "../libft_test/libft.h"
+# include "../libft/libft.h"
 # define BUFF_SIZE 21
 
 typedef struct		s_point

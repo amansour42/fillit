@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:27:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 14:27:29 by amansour         ###   ########.fr       */
+/*   Updated: 2017/05/23 19:06:34 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../includes/fillit.h"
 
 static int	big_square(t_tetri *list)
 {
