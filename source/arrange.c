@@ -58,19 +58,26 @@ static t_tetri		*test(t_tetri *one, int ligne, t_tetri *two, int c)
 
 	list = NULL;
 	nb_list = sum(one, ligne);
-	while (two)
+    while (two)
 	{
-		maillon = copy_t(two);
-		nb = (maillon->tab[0].b) >> right_nozero(maillon);
-		decale(maillon, c - cote_element(maillon));
-		while (maillon->tab[0].b >= nb &&
-				!bit_cmp(nb_list, maillon->tab[0].b, c))
-			decale(maillon, -1);
-		if (maillon->tab[0].b >= nb && check_rest(&maillon, ligne, one, c))
-			add(&list, maillon);
+        if (!cmp_t(one, two))
+        {
+            maillon = copy_t(two);
+	    	nb = (maillon->tab[0].b) >> right_nozero(maillon);
+            decale(maillon, c - cote_element(maillon));
+            while (maillon->tab[0].b >= nb && !cmp_t(list, maillon))
+            {
+                while (maillon->tab[0].b > nb &&
+                        !bit_cmp(nb_list, maillon->tab[0].b, c))
+                    decale(maillon, -1);
+		        (bit_cmp(nb_list, maillon->tab[0].b, c) &&
+                 check_rest(&maillon, ligne, one, c)) ? add(&list, maillon) :
+                    decale(maillon, -1);
+            }
+        }
 		two = two->next;
 	}
-	return (list);
+	return (optimize(list));
 }
 
 int					arrange(t_tetri **list, t_tetri *tmp, int c)
@@ -83,15 +90,15 @@ int					arrange(t_tetri **list, t_tetri *tmp, int c)
 	i = -1;
 	while (++i < c && !cmp_l(*list, tmp))
 	{
-		right = test(*list, i, tmp, c);
-		result = copy_l(*list);
+        right = test(*list, i, tmp, c);
+        result = copy_l(*list);
 		while (right)
 		{
 			if (cmp_t(*list, right))
 				right = right->next;
 			else
 			{
-				add(list, copy_t(right));
+                add(list, copy_t(right));
 				val = arrange(list, tmp, c);
 				*list = (val) ? *list : copy_l(result);
 				right = (val) ? NULL : right->next;

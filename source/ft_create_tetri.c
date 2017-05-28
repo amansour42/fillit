@@ -41,7 +41,7 @@ static void			ndiese(char **l)
 		}
 		(j != 4) ? ft_error() : ++i;
 	}
-	if (nd > 4)
+	if (nd != 4)
 		ft_error();
 }
 
@@ -52,14 +52,12 @@ static void			ndiese(char **l)
 
 static void			fill(t_point **tab, char **l)
 {
-	int		i;
-	int		j;
-	int		nb;
-	int		bits;
+	int i;
+	int j;
+    int nb;
 
 	i = -1;
-	bits = 0;
-	nb = 0;
+    nb = 0;
 	while (++i < 4)
 	{
 		(*tab)[i].y = i;
@@ -71,10 +69,11 @@ static void			fill(t_point **tab, char **l)
 			if (l[i][j] == '#')
 				(*tab)[i].b += 1;
 		}
-		if (nb && (*tab)[i].b && !((*tab)[i].b & nb))
-			ft_error();
-		nb = (*tab)[i].b;
-	}
+        if (nb && (*tab)[i].b && !((*tab)[i].b & nb))
+            ft_error();
+        nb = (*tab)[i].b;
+    }
+    verify_v(*tab);
 }
 
 /*
@@ -103,6 +102,7 @@ t_tetri				*create_tetri(char *buffer, char a)
 		i = -1;
 		while (++i < 4)
 			maillon->tab[i] = tmp[i];
+        maillon->exist = 0;
 		return (maillon);
 	}
 	return (NULL);

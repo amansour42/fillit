@@ -53,11 +53,11 @@ void		decale(t_tetri *tetri, int nbr)
 			tetri->tab[i].b >>= (-nbr);
 }
 
-void		delete_current(t_tetri *list, t_tetri *current)
+void        delete_current(t_tetri **list, t_tetri *current)
 {
-	if (list->c == current->c)
-		return ;
-	while (list->next && ((list->next)->c != current->c))
-		list = list->next;
-	list->next = (list->next)->next;
+    if ((*list)->c == current->c)
+        return ;
+    while ((*list)->next && (((*list)->next)->c != current->c))
+        *list = (*list)->next;
+    (*list)->next = ((*list)->next)->next;
 }

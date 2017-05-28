@@ -37,23 +37,23 @@ static void			decale_h(t_tetri *list, int end)
 {
 	int i;
 	int pos;
-	int min;
+	int max;
 
 	i = -1;
-	min = 0;
+	max = 3;
 	if (end == 1)
 		return ;
 	decale(list, -1 * right_nozero(list));
 	while (++i < end)
 	{
-		pos = 0;
-		while (!(list->tab[i].b & (8 >> pos)))
-			++pos;
-		if (min < (4 - pos))
-			min = 4 - pos;
+		pos = -1;
+		while (!(list->tab[i].b & (8 >> ++pos)))
+            ;
+		if (max > pos)
+            max = pos;
 	}
-	if (end > min)
-		decale(list, end - min);
+	if (end > (4 - max))
+		decale(list, end - 4 + max);
 }
 
 static void			edit_tab(t_tetri **list)
@@ -77,17 +77,15 @@ void				controle_file(int fd, t_tetri **list)
 {
 	char	*buffer;
 	char	c;
-	int		ntetri;
+    int     n_read;
 
 	c = 'A';
-	ntetri = 0;
 	*list = NULL;
 	if ((buffer = (char*)malloc(BUFF_SIZE)))
 	{
-		while (read(fd, buffer, BUFF_SIZE))
+		while ((n_read = read(fd, buffer, BUFF_SIZE)) == BUFF_SIZE)
 		{
-			++ntetri;
-			if (buffer[0] == '\n')
+            if (buffer[0] == '\n')
 			{
 				ft_strdel(&buffer);
 				free_list(list);
@@ -95,9 +93,9 @@ void				controle_file(int fd, t_tetri **list)
 			}
 			add(list, create_tetri(buffer, c++));
 		}
-		if (ntetri == 1 && buffer[20])
-			ft_error();
-		ft_strdel(&buffer);
+		(n_read != 20) ? ft_error() : add(list, create_tetri(buffer, c));
+        ft_strdel(&buffer);
 		edit_tab(list);
+        already_exist(*list);
 	}
 }

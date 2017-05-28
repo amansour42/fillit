@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-int			cote_element(t_tetri *tetri)
+int             cote_element(t_tetri *tetri)
 {
 	int i;
 	int min;
@@ -31,19 +31,47 @@ int			cote_element(t_tetri *tetri)
 	return (min);
 }
 
-int			cote_list(t_tetri *list)
+void            verify_v(t_point *tab)
 {
-	int max;
-	int i;
+    int i;
 
-	max = 0;
-	while (list)
-	{
-		i = -1;
-		while (++i < 4)
-			max = (max < list->tab[i].y && list->tab[i].b)
-				? list->tab[i].y : max;
-		list = list->next;
-	}
-	return (++max);
+    i = -1;
+    while (++i < 4 && !(tab[i].b))
+        ;
+    while (i < 4 && tab[i].b)
+        ++i;
+    while (++i < 4 && !(tab[i].b))
+        ;
+    if (i < 4)
+        ft_error();
+}
+
+t_tetri         *optimize(t_tetri *list)
+{
+    t_tetri *lst;
+    t_tetri *maillon;
+    t_tetri *result;
+    int     i;
+
+    if (!list || !list->next)
+        return (list);
+    lst = list;
+    i = -1;
+    result = copy_t(list);
+    maillon = list->next;
+    while (maillon)
+    {
+        while (list &&  i != 4 && list != maillon)
+        {
+            i = -1;
+            while (++i < 4 && (maillon->tab[i].b == list->tab[i].b))
+                ;
+            if (i == 4)
+                add(&result, copy_t(list));
+            list = list->next;
+        }
+        list = copy_l(lst);
+    maillon = maillon->next;
+    }
+    return (result);
 }

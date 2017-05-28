@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_tetri	*lst;
-	t_tetri	*result;
+	int     dimension;
 
 	lst = NULL;
 	if (argc != 2)
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 		controle_file(fd, &lst);
 	if (lst)
 	{
-		result = fit_together(lst);
-		print(result, cote_list(result));
+		dimension = fit_together(&lst);
+        print(lst, dimension);
 		free((void*)lst);
 	}
 	return (0);

@@ -44,21 +44,46 @@ t_tetri		*copy_l(t_tetri *list)
 	return (result);
 }
 
+void        already_exist(t_tetri *list)
+{
+    t_tetri *lst;
+    t_tetri *maillon;
+    int     i;
+
+    lst = list;
+    maillon = list->next;
+    while (maillon)
+    {
+        while (!maillon->exist && list != maillon)
+        {
+            i = -1;
+            while (++i < 4 && (maillon->tab[i].b ==
+                        list->tab[i].b))
+                ;
+            if (i == 4)
+                maillon->exist = 1;
+            list = list->next;
+        }
+        list = copy_l(lst);
+        maillon = maillon->next;
+    }
+}
+
 int			right_nozero(t_tetri *tetri)
 {
-	int min;
+	int max;
 	int pos;
 	int i;
 
 	i = -1;
-	min = 3;
+	max = 3;
 	while (++i < 4 && tetri->tab[i].b)
 	{
-		pos = 0;
-		while (!(tetri->tab[i].b & (1 << pos)))
-			++pos;
-		if (min > pos)
-			min = pos;
+		pos = -1;
+		while (!(tetri->tab[i].b & (1 << ++pos)))
+            ;
+		if (max > pos)
+			max = pos;
 	}
-	return (min);
+	return (max);
 }
