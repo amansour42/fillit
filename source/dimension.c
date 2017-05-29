@@ -75,3 +75,30 @@ t_tetri         *optimize(t_tetri *list)
     }
     return (result);
 }
+
+t_tetri         *right_square(int test, t_tetri *list, t_tetri *result)
+{
+    t_tetri *list1;
+    t_tetri *result1;
+    int     index1;
+    int     index2;
+
+    index1 = 0;
+    index2 = 0;
+    list1 = copy_l(list);
+    if (!test)
+        return (result);
+    if (test == -1)
+        return (list);
+    result1 = copy_l(result);
+    while (!index1 && !index2 && list)
+    {
+        index1 = (list->c == 'A') ? 1 : 0;
+        index2 = (result->c == 'A') ? 1 : 0;
+        result = result->next;
+        list = list->next;
+    }
+    if (index2)
+        return (result1);
+    return (list1);
+}

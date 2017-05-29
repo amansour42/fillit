@@ -41,6 +41,7 @@ t_tetri				*create_tetri(char *buffer, char a);
 t_tetri				*copy_t(t_tetri *maillon);
 t_tetri				*copy_l(t_tetri *maillon);
 t_tetri             *optimize(t_tetri *list);
+t_tetri             *right_square(int test, t_tetri *list, t_tetri *result);
 void				add(t_tetri **ap, t_tetri *tetri);
 void				print(t_tetri *tetri, int c);
 void				free_list(t_tetri **ap);

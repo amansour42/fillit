@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
+#include <stdio.h>
 
 static int	big_square(t_tetri *list)
 {
@@ -29,14 +30,16 @@ static int	research(t_tetri **c, int size, t_tetri *cpy_var, int *l)
 
 	cpy = copy_l(*c);
     n = arrange(c, cpy_var, size);
-	while (!n && ++size < *l)
+	while (!n && ++size <= *l)
 	{
         *c = copy_t(cpy);
         decale(*c, size - cote_element(*c));
         n = arrange(c, cpy_var, size); 
 	}
 	if (n)
-		*l = size;
+        n = (size < *l) ? -1 : 1;
+    if (size < *l)
+        *l = size;
 	return (n);
 }
 
@@ -50,14 +53,14 @@ int         fit_together(t_tetri **list)
 	var = copy_l(*list);
 	limit = 26 * 26;
     result = NULL;
-	while (*list && limit != big_square(var))
+	while (*list)
 	{
         if (!(*list)->exist)
         {
 		    current = copy_t(*list);
             decale(current, big_square(var) - cote_element(current));
-		    if (research(&current, big_square(var), copy_l(var), &limit))
-                result = copy_l(current);
+            result = right_square(research(&current, big_square(var),
+                            copy_l(var), &limit), current, result);
         }
         *list = (*list)->next;
 	}

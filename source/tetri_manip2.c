@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
-
+#include <stdio.h>
 t_tetri		*copy_t(t_tetri *maillon)
 {
 	t_tetri	*tetri;
@@ -54,7 +54,7 @@ void        already_exist(t_tetri *list)
     maillon = list->next;
     while (maillon)
     {
-        while (!maillon->exist && list != maillon)
+        while (!maillon->exist && list->c != maillon->c)
         {
             i = -1;
             while (++i < 4 && (maillon->tab[i].b ==
