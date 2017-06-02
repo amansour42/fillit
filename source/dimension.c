@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:09:28 by amansour          #+#    #+#             */
-/*   Updated: 2017/06/02 10:21:59 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:29:59 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_tetri			*optimize(t_tetri *list)
 		return (list);
 	lst = list;
 	i = -1;
-	result = copy_t(list);
+	result = cpy_tetri(list);
 	maillon = list;
 	while ((maillon = maillon->next))
 	{
@@ -67,10 +67,10 @@ t_tetri			*optimize(t_tetri *list)
 			while (++i < 4 && (maillon->tab[i].b == list->tab[i].b))
 				;
 			if (i == 4)
-				add(&result, copy_t(list));
+				add(&result, cpy_tetri(list));
 			list = list->next;
 		}
-		list = copy_l(lst);
+		list = cpy_list(lst);
 	}
 	return (result);
 }
@@ -84,12 +84,12 @@ t_tetri			*right_square(int test, t_tetri *list, t_tetri *result)
 
 	index1 = 0;
 	index2 = 0;
-	list1 = copy_l(list);
+	list1 = cpy_list(list);
 	if (!test)
 		return (result);
 	if (test == -1)
 		return (list);
-	result1 = copy_l(result);
+	result1 = cpy_list(result);
 	while (!index1 && !index2 && list)
 	{
 		index1 = (list->c == 'A') ? 1 : 0;

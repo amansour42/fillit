@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:27:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/06/02 10:24:29 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:28:44 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static int	research(t_tetri **c, int size, t_tetri *cpy_var, int *l)
 	int		n;
 	t_tetri	*cpy;
 
-	cpy = copy_l(*c);
+	cpy = cpy_list(*c);
 	n = arrange(c, cpy_var, size);
 	while (!n && ++size <= *l)
 	{
-		*c = copy_t(cpy);
+		*c = cpy_tetri(cpy);
 		decale(*c, size - cote_element(*c));
 		n = arrange(c, cpy_var, size);
 	}
@@ -49,17 +49,17 @@ int			fit_together(t_tetri **list)
 	t_tetri	*var;
 	int		limit;
 
-	var = copy_l(*list);
+	var = cpy_list(*list);
 	limit = 26 * 26;
 	result = NULL;
 	while (*list)
 	{
 		if (!(*list)->exist)
 		{
-			current = copy_t(*list);
+			current = cpy_tetri(*list);
 			decale(current, big_square(var) - cote_element(current));
 			result = right_square(research(&current, big_square(var),
-						copy_l(var), &limit), current, result);
+						cpy_list(var), &limit), current, result);
 		}
 		*list = (*list)->next;
 	}

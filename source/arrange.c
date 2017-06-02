@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 19:07:28 by amansour          #+#    #+#             */
-/*   Updated: 2017/06/02 10:11:34 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:27:43 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static t_tetri		*test(t_tetri *one, int ligne, t_tetri *two, int c)
 	{
 		if (!cmp_t(one, two))
 		{
-			maillon = copy_t(two);
+			maillon = cpy_tetri(two);
 			nb = (maillon->tab[0].b) >> right_nozero(maillon);
 			decale(maillon, c - cote_element(maillon));
 			while (maillon->tab[0].b >= nb && !cmp_t(list, maillon))
@@ -89,16 +89,16 @@ int					arrange(t_tetri **list, t_tetri *tmp, int c)
 	while (++i < c && !cmp_l(*list, tmp))
 	{
 		right = test(*list, i, tmp, c);
-		result = copy_l(*list);
+		result = cpy_list(*list);
 		while (right)
 		{
 			if (cmp_t(*list, right))
 				right = right->next;
 			else
 			{
-				add(list, copy_t(right));
+				add(list, cpy_tetri(right));
 				val = arrange(list, tmp, c);
-				*list = (val) ? *list : copy_l(result);
+				*list = (val) ? *list : cpy_list(result);
 				right = (val) ? NULL : right->next;
 			}
 		}

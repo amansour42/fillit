@@ -6,13 +6,13 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:56:24 by amansour          #+#    #+#             */
-/*   Updated: 2017/06/02 10:34:19 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:31:33 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-t_tetri		*copy_t(t_tetri *maillon)
+t_tetri		*cpy_tetri(t_tetri *maillon)
 {
 	t_tetri	*tetri;
 	int		i;
@@ -31,14 +31,14 @@ t_tetri		*copy_t(t_tetri *maillon)
 	return (tetri);
 }
 
-t_tetri		*copy_l(t_tetri *list)
+t_tetri		*cpy_list(t_tetri *list)
 {
 	t_tetri *result;
 
 	result = NULL;
 	while (list)
 	{
-		add(&result, copy_t(list));
+		add(&result, cpy_tetri(list));
 		list = list->next;
 	}
 	return (result);
@@ -63,7 +63,7 @@ void		already_exist(t_tetri *list)
 				maillon->exist = 1;
 			list = list->next;
 		}
-		list = copy_l(lst);
+		list = cpy_list(lst);
 		maillon = maillon->next;
 	}
 }
