@@ -6,12 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 17:27:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 19:06:34 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 10:24:29 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
-#include <stdio.h>
 
 static int	big_square(t_tetri *list)
 {
@@ -29,21 +28,21 @@ static int	research(t_tetri **c, int size, t_tetri *cpy_var, int *l)
 	t_tetri	*cpy;
 
 	cpy = copy_l(*c);
-    n = arrange(c, cpy_var, size);
+	n = arrange(c, cpy_var, size);
 	while (!n && ++size <= *l)
 	{
-        *c = copy_t(cpy);
-        decale(*c, size - cote_element(*c));
-        n = arrange(c, cpy_var, size); 
+		*c = copy_t(cpy);
+		decale(*c, size - cote_element(*c));
+		n = arrange(c, cpy_var, size);
 	}
 	if (n)
-        n = (size < *l) ? -1 : 1;
-    if (size < *l)
-        *l = size;
+		n = (size < *l) ? -1 : 1;
+	if (size < *l)
+		*l = size;
 	return (n);
 }
 
-int         fit_together(t_tetri **list)
+int			fit_together(t_tetri **list)
 {
 	t_tetri	*current;
 	t_tetri	*result;
@@ -52,18 +51,18 @@ int         fit_together(t_tetri **list)
 
 	var = copy_l(*list);
 	limit = 26 * 26;
-    result = NULL;
+	result = NULL;
 	while (*list)
 	{
-        if (!(*list)->exist)
-        {
-		    current = copy_t(*list);
-            decale(current, big_square(var) - cote_element(current));
-            result = right_square(research(&current, big_square(var),
-                            copy_l(var), &limit), current, result);
-        }
-        *list = (*list)->next;
+		if (!(*list)->exist)
+		{
+			current = copy_t(*list);
+			decale(current, big_square(var) - cote_element(current));
+			result = right_square(research(&current, big_square(var),
+						copy_l(var), &limit), current, result);
+		}
+		*list = (*list)->next;
 	}
-    *list = result;
+	*list = result;
 	return (limit);
 }

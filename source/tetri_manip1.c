@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:12:36 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 19:09:14 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 10:31:25 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void		decale(t_tetri *tetri, int nbr)
 			tetri->tab[i].b >>= (-nbr);
 }
 
-void        delete_current(t_tetri **list, t_tetri *current)
+void		delete_current(t_tetri **list, t_tetri *current)
 {
-    if ((*list)->c == current->c)
-        return ;
-    while ((*list)->next && (((*list)->next)->c != current->c))
-        *list = (*list)->next;
-    (*list)->next = ((*list)->next)->next;
+	if ((*list)->c == current->c)
+		return ;
+	while ((*list)->next && (((*list)->next)->c != current->c))
+		*list = (*list)->next;
+	(*list)->next = ((*list)->next)->next;
 }

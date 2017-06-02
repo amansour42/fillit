@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 20:43:18 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 19:07:29 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 10:27:59 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static void			fill(t_point **tab, char **l)
 {
 	int i;
 	int j;
-    int nb;
+	int nb;
 
 	i = -1;
-    nb = 0;
+	nb = 0;
 	while (++i < 4)
 	{
 		(*tab)[i].y = i;
@@ -69,11 +69,11 @@ static void			fill(t_point **tab, char **l)
 			if (l[i][j] == '#')
 				(*tab)[i].b += 1;
 		}
-        if (nb && (*tab)[i].b && !((*tab)[i].b & nb))
-            ft_error();
-        nb = (*tab)[i].b;
-    }
-    verify_v(*tab);
+		if (nb && (*tab)[i].b && !((*tab)[i].b & nb))
+			ft_error();
+		nb = (*tab)[i].b;
+	}
+	verify_v(*tab);
 }
 
 /*
@@ -102,7 +102,7 @@ t_tetri				*create_tetri(char *buffer, char a)
 		i = -1;
 		while (++i < 4)
 			maillon->tab[i] = tmp[i];
-        maillon->exist = 0;
+		maillon->exist = 0;
 		return (maillon);
 	}
 	return (NULL);

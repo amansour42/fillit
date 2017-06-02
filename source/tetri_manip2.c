@@ -6,12 +6,12 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 14:56:24 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 19:09:29 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 10:34:19 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
-#include <stdio.h>
+
 t_tetri		*copy_t(t_tetri *maillon)
 {
 	t_tetri	*tetri;
@@ -44,29 +44,28 @@ t_tetri		*copy_l(t_tetri *list)
 	return (result);
 }
 
-void        already_exist(t_tetri *list)
+void		already_exist(t_tetri *list)
 {
-    t_tetri *lst;
-    t_tetri *maillon;
-    int     i;
+	t_tetri *lst;
+	t_tetri *maillon;
+	int		i;
 
-    lst = list;
-    maillon = list->next;
-    while (maillon)
-    {
-        while (!maillon->exist && list->c != maillon->c)
-        {
-            i = -1;
-            while (++i < 4 && (maillon->tab[i].b ==
-                        list->tab[i].b))
-                ;
-            if (i == 4)
-                maillon->exist = 1;
-            list = list->next;
-        }
-        list = copy_l(lst);
-        maillon = maillon->next;
-    }
+	lst = list;
+	maillon = list->next;
+	while (maillon)
+	{
+		while (!maillon->exist && list->c != maillon->c)
+		{
+			i = -1;
+			while (++i < 4 && (maillon->tab[i].b == list->tab[i].b))
+				;
+			if (i == 4)
+				maillon->exist = 1;
+			list = list->next;
+		}
+		list = copy_l(lst);
+		maillon = maillon->next;
+	}
 }
 
 int			right_nozero(t_tetri *tetri)
@@ -81,7 +80,7 @@ int			right_nozero(t_tetri *tetri)
 	{
 		pos = -1;
 		while (!(tetri->tab[i].b & (1 << ++pos)))
-            ;
+			;
 		if (max > pos)
 			max = pos;
 	}

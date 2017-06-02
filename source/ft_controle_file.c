@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:51:42 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/23 19:07:14 by amansour         ###   ########.fr       */
+/*   Updated: 2017/06/02 10:26:40 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static void			decale_h(t_tetri *list, int end)
 	{
 		pos = -1;
 		while (!(list->tab[i].b & (8 >> ++pos)))
-            ;
+			;
 		if (max > pos)
-            max = pos;
+			max = pos;
 	}
 	if (end > (4 - max))
 		decale(list, end - 4 + max);
@@ -77,7 +77,7 @@ void				controle_file(int fd, t_tetri **list)
 {
 	char	*buffer;
 	char	c;
-    int     n_read;
+	int		n_read;
 
 	c = 'A';
 	*list = NULL;
@@ -85,7 +85,7 @@ void				controle_file(int fd, t_tetri **list)
 	{
 		while ((n_read = read(fd, buffer, BUFF_SIZE)) == BUFF_SIZE)
 		{
-            if (buffer[0] == '\n')
+			if (buffer[0] == '\n')
 			{
 				ft_strdel(&buffer);
 				free_list(list);
@@ -94,8 +94,8 @@ void				controle_file(int fd, t_tetri **list)
 			add(list, create_tetri(buffer, c++));
 		}
 		(n_read != 20) ? ft_error() : add(list, create_tetri(buffer, c));
-        ft_strdel(&buffer);
+		ft_strdel(&buffer);
 		edit_tab(list);
-        already_exist(*list);
+		already_exist(*list);
 	}
 }
